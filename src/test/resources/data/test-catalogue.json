@@ -1,0 +1,15 @@
+{
+  "categories": [{ "name": "Engine" }, { "name": "Transmission" }],
+  "partTypes": [
+    {
+      "name": "V8",
+      "category": { "name": "Engine" },
+      "description": "V8 Engine"
+    },
+    {
+      "name": "Manual",
+      "category": { "name": "Transmission" },
+      "description": "Manual Transmission"
+    }
+  ]
+}

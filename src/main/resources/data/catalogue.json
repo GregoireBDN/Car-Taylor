@@ -1,0 +1,105 @@
+{
+  "categories": [
+    { "name": "Engine" },
+    { "name": "Transmission" },
+    { "name": "Exterior" },
+    { "name": "Interior" }
+  ],
+  "partTypes": [
+    {
+      "name": "EG100",
+      "category": { "name": "Engine" },
+      "description": "Gasoline, 100 kW"
+    },
+    {
+      "name": "EG133",
+      "category": { "name": "Engine" },
+      "description": "Gasoline, 133 kW"
+    },
+    {
+      "name": "EG210",
+      "category": { "name": "Engine" },
+      "description": "Gasoline, 210 kW"
+    },
+    {
+      "name": "ED110",
+      "category": { "name": "Engine" },
+      "description": "Diesel, 110 kW"
+    },
+    {
+      "name": "ED180",
+      "category": { "name": "Engine" },
+      "description": "Diesel, 180 kW"
+    },
+    {
+      "name": "EH120",
+      "category": { "name": "Engine" },
+      "description": "Gasoline/electric hybrid, 120 kW"
+    },
+    {
+      "name": "TM5",
+      "category": { "name": "Transmission" },
+      "description": "Manual, 5 gears"
+    },
+    {
+      "name": "TM6",
+      "category": { "name": "Transmission" },
+      "description": "Manual, 6 gears"
+    },
+    {
+      "name": "TA5",
+      "category": { "name": "Transmission" },
+      "description": "Automatic, 5 gears"
+    },
+    {
+      "name": "TS6",
+      "category": { "name": "Transmission" },
+      "description": "Sequential, 6 gears"
+    },
+    {
+      "name": "TSF7",
+      "category": { "name": "Transmission" },
+      "description": "Sequential, 7 gears, 4 wheels drive"
+    },
+    {
+      "name": "TC120",
+      "category": { "name": "Transmission" },
+      "description": "Converter, 120 kW max"
+    },
+    {
+      "name": "XC",
+      "category": { "name": "Exterior" },
+      "description": "Classic paint"
+    },
+    {
+      "name": "XM",
+      "category": { "name": "Exterior" },
+      "description": "Metallic paint"
+    },
+    {
+      "name": "XS",
+      "category": { "name": "Exterior" },
+      "description": "Red paint and sport decoration"
+    },
+    {
+      "name": "IN",
+      "category": { "name": "Interior" },
+      "description": "Standard interior"
+    },
+    {
+      "name": "IH",
+      "category": { "name": "Interior" },
+      "description": "High-end interior"
+    },
+    {
+      "name": "IS",
+      "category": { "name": "Interior" },
+      "description": "Sport finish"
+    },
+    {
+      "name": "XD",
+      "category": { "name": "Exterior" },
+      "description": "Dark paint"
+    }
+  ]
+}
