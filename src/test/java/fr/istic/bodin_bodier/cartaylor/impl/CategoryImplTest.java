@@ -2,6 +2,9 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.TransmissionCategory;
+import fr.istic.bodin_bodier.cartaylor.api.Category;
 
 /**
  * Tests unitaires pour la classe CategoryImpl.
@@ -17,26 +20,8 @@ public class CategoryImplTest {
    */
   @Test
   public void testValidCategory() {
-    CategoryImpl category = new CategoryImpl("Engine");
+    Category category = new EngineCategory();
     assertEquals("Engine", category.getName());
-  }
-
-  /**
-   * Vérifie qu'une exception est levée lors de la création
-   * d'une catégorie avec un nom null.
-   */
-  @Test(expected = IllegalArgumentException.class)
-  public void testNullName() {
-    new CategoryImpl(null);
-  }
-
-  /**
-   * Vérifie qu'une exception est levée lors de la création
-   * d'une catégorie avec un nom vide.
-   */
-  @Test(expected = IllegalArgumentException.class)
-  public void testEmptyName() {
-    new CategoryImpl("");
   }
 
   /**
@@ -44,9 +29,9 @@ public class CategoryImplTest {
    */
   @Test
   public void testEquals() {
-    CategoryImpl category1 = new CategoryImpl("Engine");
-    CategoryImpl category2 = new CategoryImpl("Engine");
-    CategoryImpl category3 = new CategoryImpl("Transmission");
+    Category category1 = new EngineCategory();
+    Category category2 = new EngineCategory();
+    Category category3 = new TransmissionCategory();
 
     assertTrue(category1.equals(category2));
     assertFalse(category1.equals(category3));

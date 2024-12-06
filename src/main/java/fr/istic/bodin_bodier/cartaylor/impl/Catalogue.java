@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.*;
 
 import java.io.*;
 import java.util.*;
@@ -21,9 +22,28 @@ import java.util.*;
 public class Catalogue {
 
   /** Map associant les noms des catégories à leurs instances */
-  private final Map<String, Category> categories = new HashMap<>();
+  private final Map<String, Category> categories;
   /** Ensemble des types de pièces disponibles */
-  private final Set<PartType> partTypes = new HashSet<>();
+  private final Set<PartType> partTypes;
+
+  public Catalogue() {
+    this.categories = new HashMap<>();
+    this.partTypes = new HashSet<>();
+    initializeCategories();
+  }
+
+  private void initializeCategories() {
+    // Initialisation des catégories prédéfinies
+    Category engine = new EngineCategory();
+    Category transmission = new TransmissionCategory();
+    Category exterior = new ExteriorCategory();
+    Category interior = new InteriorCategory();
+
+    categories.put(engine.getName(), engine);
+    categories.put(transmission.getName(), transmission);
+    categories.put(exterior.getName(), exterior);
+    categories.put(interior.getName(), interior);
+  }
 
   /**
    * Charge les données du catalogue depuis un fichier JSON.
@@ -52,18 +72,11 @@ public class Catalogue {
     ObjectMapper mapper = new ObjectMapper();
     JsonNode rootNode = mapper.readTree(inputStream);
 
-    // Charger les catégories
-    JsonNode categoriesNode = rootNode.get("categories");
-    for (JsonNode categoryNode : categoriesNode) {
-      String categoryName = categoryNode.get("name").asText();
-      categories.put(categoryName, new CategoryImpl(categoryName));
-    }
-
     // Charger les types de pièces
     JsonNode partTypesNode = rootNode.get("partTypes");
     for (JsonNode partTypeNode : partTypesNode) {
       String partTypeName = partTypeNode.get("name").asText();
-      String categoryName = partTypeNode.get("category").get("name").asText();
+      String categoryName = partTypeNode.get("category").asText();
       int partTypePrice = partTypeNode.get("price").asInt();
 
       Category category = categories.get(categoryName);
@@ -71,7 +84,11 @@ public class Catalogue {
         throw new IllegalStateException("Category not found: " + categoryName);
       }
 
-      PartType partType = new PartTypeImpl(partTypeName, category, PartImpl.class, partTypePrice);
+      PartType partType = new PartTypeImpl(
+          partTypeName,
+          category,
+          PartImpl.class,
+          partTypePrice);
       partTypes.add(partType);
     }
   }
@@ -86,11 +103,33 @@ public class Catalogue {
   }
 
   /**
+   * Retourne une catégorie spécifique par son nom.
+   * 
+   * @param name le nom de la catégorie
+   * @return la catégorie correspondante
+   */
+  public Category getCategory(String name) {
+    return categories.get(name);
+  }
+
+  /**
    * Retourne l'ensemble des types de pièces disponibles dans le catalogue.
    * 
    * @return un ensemble contenant tous les types de pièces
    */
   public Set<PartType> getPartTypes() {
     return new HashSet<>(partTypes);
+  }
+
+  /**
+   * Retourne l'ensemble des types de pièces pour une catégorie spécifique.
+   * 
+   * @param category la catégorie à filtrer
+   * @return un ensemble contenant tous les types de pièces pour la catégorie
+   */
+  public Set<PartType> getPartTypesForCategory(Category category) {
+    return partTypes.stream()
+        .filter(pt -> pt.getCategory().equals(category))
+        .collect(java.util.stream.Collectors.toSet());
   }
 }

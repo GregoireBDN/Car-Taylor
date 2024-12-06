@@ -2,6 +2,8 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.TransmissionCategory;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -41,9 +43,13 @@ public class CompatibilityManagerImplTest {
   @Before
   public void setUp() {
     compatibilityManager = new CompatibilityManagerImpl();
-    partA = new MockPartType("A", 100);
-    partB = new MockPartType("B", 200);
-    partC = new MockPartType("C", 300);
+    Category engineCategory = new EngineCategory();
+    Category transmissionCategory = new TransmissionCategory();
+
+    partA = new PartTypeImpl("A", engineCategory, PartImpl.class, 100);
+    partB = new PartTypeImpl("B", engineCategory, PartImpl.class, 200);
+    partC = new PartTypeImpl("C", transmissionCategory, PartImpl.class, 300);
+
     targetSet = new HashSet<>();
     targetSet.add(partB);
     targetSet.add(partC);
@@ -141,48 +147,5 @@ public class CompatibilityManagerImplTest {
   @Test(expected = IllegalArgumentException.class)
   public void testNullParameters() {
     compatibilityManager.addIncompatibilities(null, targetSet);
-  }
-
-  /**
-   * Classe mock pour les tests de types de pièces.
-   * 
-   * <p>
-   * Cette implémentation simplifiée de PartType permet de tester
-   * le gestionnaire de compatibilité sans dépendre de l'implémentation réelle.
-   */
-  private static class MockPartType implements PartType {
-    private final String name;
-    private final int price;
-
-    /**
-     * Crée un nouveau type de pièce mock avec le nom spécifié.
-     * 
-     * @param name le nom de la pièce mock
-     */
-    public MockPartType(String name, int price) {
-      this.name = name;
-      this.price = price;
-    }
-
-    @Override
-    public String getName() {
-      return name;
-    }
-
-    @Override
-    public int getPrice() {
-      return price;
-    }
-
-    @Override
-    public Category getCategory() {
-      return null;
-
-    }
-
-    @Override
-    public String toString() {
-      return name;
-    }
   }
 }

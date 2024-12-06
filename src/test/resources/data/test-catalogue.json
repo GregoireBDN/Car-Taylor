@@ -1,15 +1,46 @@
 {
-  "categories": [{ "name": "Engine" }, { "name": "Transmission" }],
   "partTypes": [
     {
       "name": "V8",
-      "category": { "name": "Engine" },
-      "description": "V8 Engine"
+      "category": "Engine",
+      "description": "V8 Engine",
+      "price": 10000,
+      "properties": {
+        "power": 300,
+        "fuelType": "Gasoline"
+      }
+    },
+    {
+      "name": "V6",
+      "category": "Engine",
+      "description": "V6 Engine",
+      "price": 8000,
+      "properties": {
+        "power": 250,
+        "fuelType": "Gasoline"
+      }
     },
     {
       "name": "Manual",
-      "category": { "name": "Transmission" },
-      "description": "Manual Transmission"
+      "category": "Transmission",
+      "description": "Manual Transmission",
+      "price": 5000,
+      "properties": {
+        "type": "Manual",
+        "gears": 6,
+        "fourWheelDrive": false
+      }
+    },
+    {
+      "name": "Automatic",
+      "category": "Transmission",
+      "description": "Automatic Transmission",
+      "price": 6000,
+      "properties": {
+        "type": "Automatic",
+        "gears": 7,
+        "fourWheelDrive": true
+      }
     }
   ]
 }

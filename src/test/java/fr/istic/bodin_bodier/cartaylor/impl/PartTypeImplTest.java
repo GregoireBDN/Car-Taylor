@@ -1,6 +1,7 @@
 package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -22,7 +23,7 @@ public class PartTypeImplTest {
    */
   @Before
   public void setUp() {
-    engineCategory = new CategoryImpl("Engine");
+    engineCategory = new EngineCategory();
   }
 
   /**
@@ -33,6 +34,7 @@ public class PartTypeImplTest {
     PartTypeImpl partType = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
     assertEquals("V8", partType.getName());
     assertEquals(engineCategory, partType.getCategory());
+    assertEquals(10000, partType.getPrice());
   }
 
   /**

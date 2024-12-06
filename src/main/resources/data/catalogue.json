@@ -1,124 +1,40 @@
 {
-  "categories": [
-    { "name": "Engine" },
-    { "name": "Transmission" },
-    { "name": "Exterior" },
-    { "name": "Interior" }
-  ],
   "partTypes": [
     {
       "name": "EG100",
-      "category": { "name": "Engine" },
+      "category": "Engine",
       "description": "Gasoline, 100 kW",
-      "price": 10000
+      "price": 10000,
+      "properties": {
+        "power": 100,
+        "fuelType": "Gasoline"
+      }
     },
     {
       "name": "EG133",
-      "category": { "name": "Engine" },
+      "category": "Engine",
       "description": "Gasoline, 133 kW",
-      "price": 15000
-    },
-    {
-      "name": "EG210",
-      "category": { "name": "Engine" },
-      "description": "Gasoline, 210 kW",
-      "price": 20000
+      "price": 15000,
+      "properties": {
+        "power": 133,
+        "fuelType": "Gasoline"
+      }
     },
     {
       "name": "ED110",
-      "category": { "name": "Engine" },
+      "category": "Engine",
       "description": "Diesel, 110 kW",
-      "price": 12000
-    },
-    {
-      "name": "ED180",
-      "category": { "name": "Engine" },
-      "description": "Diesel, 180 kW",
-      "price": 16000
-    },
-    {
-      "name": "EH120",
-      "category": { "name": "Engine" },
-      "description": "Gasoline/electric hybrid, 120 kW",
-      "price": 18000
+      "price": 12000,
+      "properties": {
+        "power": 110,
+        "fuelType": "Diesel"
+      }
     },
     {
       "name": "TM5",
-      "category": { "name": "Transmission" },
+      "category": "Transmission",
       "description": "Manual, 5 gears",
       "price": 10000
-    },
-    {
-      "name": "TM6",
-      "category": { "name": "Transmission" },
-      "description": "Manual, 6 gears",
-      "price": 12000
-    },
-    {
-      "name": "TA5",
-      "category": { "name": "Transmission" },
-      "description": "Automatic, 5 gears",
-      "price": 14000
-    },
-    {
-      "name": "TS6",
-      "category": { "name": "Transmission" },
-      "description": "Sequential, 6 gears",
-      "price": 16000
-    },
-    {
-      "name": "TSF7",
-      "category": { "name": "Transmission" },
-      "description": "Sequential, 7 gears, 4 wheels drive",
-      "price": 18000
-    },
-    {
-      "name": "TC120",
-      "category": { "name": "Transmission" },
-      "description": "Converter, 120 kW max",
-      "price": 20000
-    },
-    {
-      "name": "XC",
-      "category": { "name": "Exterior" },
-      "description": "Classic paint",
-      "price": 1000
-    },
-    {
-      "name": "XM",
-      "category": { "name": "Exterior" },
-      "description": "Metallic paint",
-      "price": 1500
-    },
-    {
-      "name": "XS",
-      "category": { "name": "Exterior" },
-      "description": "Red paint and sport decoration",
-      "price": 2000
-    },
-    {
-      "name": "IN",
-      "category": { "name": "Interior" },
-      "description": "Standard interior",
-      "price": 1000
-    },
-    {
-      "name": "IH",
-      "category": { "name": "Interior" },
-      "description": "High-end interior",
-      "price": 1500
-    },
-    {
-      "name": "IS",
-      "category": { "name": "Interior" },
-      "description": "Sport finish",
-      "price": 2000
-    },
-    {
-      "name": "XD",
-      "category": { "name": "Exterior" },
-      "description": "Dark paint",
-      "price": 1000
     }
   ]
 }

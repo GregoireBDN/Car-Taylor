@@ -4,6 +4,8 @@ import fr.istic.bodin_bodier.cartaylor.api.*;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.TransmissionCategory;
 
 import java.util.Set;
 
@@ -43,7 +45,7 @@ public class ConfiguratorImplTest {
    */
   @Test
   public void testGetVariants() {
-    Category engineCategory = new CategoryImpl("Engine");
+    Category engineCategory = new EngineCategory();
     Set<PartType> variants = configurator.getVariants(engineCategory);
     assertNotNull(variants);
     assertFalse(variants.isEmpty());

@@ -1,11 +1,15 @@
 package fr.istic.bodin_bodier.cartaylor.impl;
 
+import fr.istic.bodin_bodier.cartaylor.api.Category;
+import fr.istic.bodin_bodier.cartaylor.api.PartType;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.*;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Set;
 
 /**
  * Tests unitaires pour la classe Catalogue.
@@ -42,11 +46,17 @@ public class CatalogueTest {
       }
 
       catalogue.loadFromJSON(inputStream);
+      Set<PartType> partTypes = catalogue.getPartTypes();
+      assertFalse("Le catalogue devrait contenir des types de pièces", partTypes.isEmpty());
 
-      assertFalse("Le catalogue devrait contenir des catégories",
-          catalogue.getCategories().isEmpty());
-      assertFalse("Le catalogue devrait contenir des types de pièces",
-          catalogue.getPartTypes().isEmpty());
+      // Vérification des catégories spécifiques
+      Set<Category> categories = catalogue.getCategories();
+      assertFalse("Le catalogue devrait contenir des catégories", categories.isEmpty());
+      assertEquals(4, categories.size());
+      assertTrue(categories.contains(catalogue.getCategory("Engine")));
+      assertTrue(categories.contains(catalogue.getCategory("Transmission")));
+      assertTrue(categories.contains(catalogue.getCategory("Exterior")));
+      assertTrue(categories.contains(catalogue.getCategory("Interior")));
     }
   }
 
