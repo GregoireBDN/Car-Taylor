@@ -89,4 +89,12 @@ public class ConfigurationImplTest {
     configuration.selectPart(enginePart);
     assertTrue(configuration.isValid());
   }
+
+  @Test
+  public void testHtmlDescription() {
+    configuration.selectPart(enginePart);
+    assertEquals(
+        "<div class='configuration'><h3>Configuration de la voiture</h3><ul><li><strong>Engine:</strong> V8<br>Prix: 10000 €</li><li>Prix total: 10000 €</li></ul></div>",
+        configuration.getHtmlDescription());
+  }
 }

@@ -67,6 +67,13 @@ public interface Configuration {
   void clear();
 
   /**
+   * Génère une description HTML de la configuration actuelle.
+   * 
+   * @return une chaîne HTML décrivant la configuration
+   */
+  String getHtmlDescription();
+
+  /**
    * Retourne le prix total de la configuration.
    * 
    * @return le prix total de la configuration

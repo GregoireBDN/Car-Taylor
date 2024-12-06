@@ -129,6 +129,42 @@ public class ConfigurationImpl implements Configuration {
   }
 
   /**
+   * Génère une description HTML de la configuration actuelle.
+   * 
+   * @return une chaîne HTML décrivant la configuration si elle est valide et
+   *         complète,
+   *         ou un message d'erreur si la configuration n'est pas valide ou
+   *         incomplète
+   */
+  public String getHtmlDescription() {
+    if (!isValid() || !isComplete()) {
+      return "<p style='color: red'>La configuration n'est pas valide ou est incomplète.</p>";
+    }
+
+    StringBuilder html = new StringBuilder();
+    html.append("<div class='configuration'>");
+    html.append("<h3>Configuration de la voiture</h3>");
+    html.append("<ul>");
+
+    // Trier les catégories pour une présentation cohérente
+    List<Category> categories = new ArrayList<>(configurator.getCategories());
+    Collections.sort(categories, Comparator.comparing(Category::getName));
+
+    for (Category category : categories) {
+      PartType part = getSelectionForCategory(category);
+      html.append(String.format("<li><strong>%s:</strong> %s<br>Prix: %d €</li>",
+          category.getName(),
+          part.getName(),
+          part.getPrice()));
+    }
+    html.append("<li>Prix total: " + getTotalPrice() + " €</li>");
+    html.append("</ul>");
+    html.append("</div>");
+
+    return html.toString();
+  }
+
+  /**
    * Retourne le prix total de la configuration.
    * 
    * @return le prix total de la configuration
