@@ -70,7 +70,7 @@ public class Catalogue {
         throw new IllegalStateException("Category not found: " + categoryName);
       }
 
-      PartType partType = new PartTypeImpl(partTypeName, category);
+      PartType partType = new PartTypeImpl(partTypeName, category, PartImpl.class);
       partTypes.add(partType);
     }
   }

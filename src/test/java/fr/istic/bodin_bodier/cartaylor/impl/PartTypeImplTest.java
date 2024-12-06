@@ -4,6 +4,7 @@ import fr.istic.bodin_bodier.cartaylor.api.Category;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import fr.istic.bodin_bodier.cartaylor.impl.PartImpl;
 
 /**
  * Tests unitaires pour la classe PartTypeImpl.
@@ -29,7 +30,7 @@ public class PartTypeImplTest {
    */
   @Test
   public void testValidPartType() {
-    PartTypeImpl partType = new PartTypeImpl("V8", engineCategory);
+    PartTypeImpl partType = new PartTypeImpl("V8", engineCategory, PartImpl.class);
     assertEquals("V8", partType.getName());
     assertEquals(engineCategory, partType.getCategory());
   }
@@ -40,7 +41,7 @@ public class PartTypeImplTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testNullName() {
-    new PartTypeImpl(null, engineCategory);
+    new PartTypeImpl(null, engineCategory, PartImpl.class);
   }
 
   /**
@@ -49,7 +50,7 @@ public class PartTypeImplTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testNullCategory() {
-    new PartTypeImpl("V8", null);
+    new PartTypeImpl("V8", null, PartImpl.class);
   }
 
   /**
@@ -57,9 +58,9 @@ public class PartTypeImplTest {
    */
   @Test
   public void testEquals() {
-    PartTypeImpl partType1 = new PartTypeImpl("V8", engineCategory);
-    PartTypeImpl partType2 = new PartTypeImpl("V8", engineCategory);
-    PartTypeImpl partType3 = new PartTypeImpl("V6", engineCategory);
+    PartTypeImpl partType1 = new PartTypeImpl("V8", engineCategory, PartImpl.class);
+    PartTypeImpl partType2 = new PartTypeImpl("V8", engineCategory, PartImpl.class);
+    PartTypeImpl partType3 = new PartTypeImpl("V6", engineCategory, PartImpl.class);
 
     assertTrue(partType1.equals(partType2));
     assertFalse(partType1.equals(partType3));

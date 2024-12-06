@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import fr.istic.bodin_bodier.cartaylor.impl.PartImpl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class ConfigurationImplTest {
 
     configuration = new ConfigurationImpl(configurator);
 
-    enginePart = new PartTypeImpl("V8", engineCategory);
+    enginePart = new PartTypeImpl("V8", engineCategory, PartImpl.class);
   }
 
   /**

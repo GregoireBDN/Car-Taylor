@@ -2,6 +2,9 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.lang.reflect.Constructor;
 
 /**
  * Implémentation de l'interface PartType représentant un type de pièce
@@ -15,6 +18,7 @@ import fr.istic.bodin_bodier.cartaylor.api.PartType;
  */
 public class PartTypeImpl implements PartType {
   private final String name;
+  private Class<? extends PartImpl> classRef;
   private final Category category;
 
   /**
@@ -25,7 +29,7 @@ public class PartTypeImpl implements PartType {
    * @throws IllegalArgumentException si le nom est null ou vide, ou si la
    *                                  catégorie est null
    */
-  public PartTypeImpl(String name, Category category) {
+  public PartTypeImpl(String name, Category category, Class<? extends PartImpl> classRef) {
     if (name == null || name.trim().isEmpty()) {
       throw new IllegalArgumentException("Le nom de la pièce ne peut pas être null ou vide");
     }
@@ -34,6 +38,7 @@ public class PartTypeImpl implements PartType {
     }
     this.name = name;
     this.category = category;
+    this.classRef = classRef;
   }
 
   /**
@@ -72,5 +77,17 @@ public class PartTypeImpl implements PartType {
       return false;
     PartTypeImpl partType = (PartTypeImpl) o;
     return name.equals(partType.name) && category.equals(partType.category);
+  }
+
+  public PartImpl newInstance() {
+    Constructor<? extends PartImpl> constructor;
+    try {
+      constructor = classRef.getConstructor();
+      return constructor.newInstance();
+    } catch (Exception e) {
+      Logger.getGlobal().log(Level.SEVERE, "constructor call failed", e);
+      System.exit(-1);
+    }
+    return null;
   }
 }
