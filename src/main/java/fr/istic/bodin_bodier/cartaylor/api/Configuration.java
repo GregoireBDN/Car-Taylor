@@ -65,4 +65,11 @@ public interface Configuration {
    * Efface toutes les sélections de la configuration.
    */
   void clear();
+
+  /**
+   * Génère une description HTML de la configuration actuelle.
+   * 
+   * @return une chaîne HTML décrivant la configuration
+   */
+  String getHtmlDescription();
 }
