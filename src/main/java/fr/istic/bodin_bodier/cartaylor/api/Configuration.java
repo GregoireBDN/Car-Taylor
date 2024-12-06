@@ -65,4 +65,11 @@ public interface Configuration {
    * Efface toutes les sélections de la configuration.
    */
   void clear();
+
+  /**
+   * Retourne le prix total de la configuration.
+   * 
+   * @return le prix total de la configuration
+   */
+  int getTotalPrice();
 }

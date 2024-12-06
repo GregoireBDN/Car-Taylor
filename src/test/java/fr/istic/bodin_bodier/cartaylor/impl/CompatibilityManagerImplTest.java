@@ -41,9 +41,9 @@ public class CompatibilityManagerImplTest {
   @Before
   public void setUp() {
     compatibilityManager = new CompatibilityManagerImpl();
-    partA = new MockPartType("A");
-    partB = new MockPartType("B");
-    partC = new MockPartType("C");
+    partA = new MockPartType("A", 100);
+    partB = new MockPartType("B", 200);
+    partC = new MockPartType("C", 300);
     targetSet = new HashSet<>();
     targetSet.add(partB);
     targetSet.add(partC);
@@ -152,19 +152,26 @@ public class CompatibilityManagerImplTest {
    */
   private static class MockPartType implements PartType {
     private final String name;
+    private final int price;
 
     /**
      * Crée un nouveau type de pièce mock avec le nom spécifié.
      * 
      * @param name le nom de la pièce mock
      */
-    public MockPartType(String name) {
+    public MockPartType(String name, int price) {
       this.name = name;
+      this.price = price;
     }
 
     @Override
     public String getName() {
       return name;
+    }
+
+    @Override
+    public int getPrice() {
+      return price;
     }
 
     @Override

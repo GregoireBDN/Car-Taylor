@@ -20,6 +20,13 @@ public interface PartType {
   String getName();
 
   /**
+   * Retourne le prix du type de pièce.
+   * 
+   * @return le prix du type de pièce
+   */
+  int getPrice();
+
+  /**
    * Retourne la catégorie à laquelle appartient ce type de pièce.
    * 
    * @return la catégorie de la pièce

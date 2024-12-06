@@ -18,6 +18,7 @@ import java.lang.reflect.Constructor;
  */
 public class PartTypeImpl implements PartType {
   private final String name;
+  private final int price;
   private Class<? extends PartImpl> classRef;
   private final Category category;
 
@@ -29,7 +30,7 @@ public class PartTypeImpl implements PartType {
    * @throws IllegalArgumentException si le nom est null ou vide, ou si la
    *                                  catégorie est null
    */
-  public PartTypeImpl(String name, Category category, Class<? extends PartImpl> classRef) {
+  public PartTypeImpl(String name, Category category, Class<? extends PartImpl> classRef, int price) {
     if (name == null || name.trim().isEmpty()) {
       throw new IllegalArgumentException("Le nom de la pièce ne peut pas être null ou vide");
     }
@@ -39,6 +40,7 @@ public class PartTypeImpl implements PartType {
     this.name = name;
     this.category = category;
     this.classRef = classRef;
+    this.price = price;
   }
 
   /**
@@ -89,5 +91,10 @@ public class PartTypeImpl implements PartType {
       System.exit(-1);
     }
     return null;
+  }
+
+  @Override
+  public int getPrice() {
+    return price;
   }
 }

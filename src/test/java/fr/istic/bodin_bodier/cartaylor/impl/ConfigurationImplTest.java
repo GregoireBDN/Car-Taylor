@@ -42,7 +42,7 @@ public class ConfigurationImplTest {
 
     configuration = new ConfigurationImpl(configurator);
 
-    enginePart = new PartTypeImpl("V8", engineCategory, PartImpl.class);
+    enginePart = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
   }
 
   /**

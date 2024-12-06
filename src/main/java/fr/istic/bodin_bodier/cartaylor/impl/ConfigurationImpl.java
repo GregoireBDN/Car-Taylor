@@ -127,4 +127,14 @@ public class ConfigurationImpl implements Configuration {
   public void clear() {
     selections.clear();
   }
+
+  /**
+   * Retourne le prix total de la configuration.
+   * 
+   * @return le prix total de la configuration
+   */
+  @Override
+  public int getTotalPrice() {
+    return getSelectedParts().stream().mapToInt(PartType::getPrice).sum();
+  }
 }

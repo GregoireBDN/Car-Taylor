@@ -30,7 +30,7 @@ public class PartTypeImplTest {
    */
   @Test
   public void testValidPartType() {
-    PartTypeImpl partType = new PartTypeImpl("V8", engineCategory, PartImpl.class);
+    PartTypeImpl partType = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
     assertEquals("V8", partType.getName());
     assertEquals(engineCategory, partType.getCategory());
   }
@@ -41,7 +41,7 @@ public class PartTypeImplTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testNullName() {
-    new PartTypeImpl(null, engineCategory, PartImpl.class);
+    new PartTypeImpl(null, engineCategory, PartImpl.class, 10000);
   }
 
   /**
@@ -50,7 +50,7 @@ public class PartTypeImplTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testNullCategory() {
-    new PartTypeImpl("V8", null, PartImpl.class);
+    new PartTypeImpl("V8", null, PartImpl.class, 10000);
   }
 
   /**
@@ -58,9 +58,9 @@ public class PartTypeImplTest {
    */
   @Test
   public void testEquals() {
-    PartTypeImpl partType1 = new PartTypeImpl("V8", engineCategory, PartImpl.class);
-    PartTypeImpl partType2 = new PartTypeImpl("V8", engineCategory, PartImpl.class);
-    PartTypeImpl partType3 = new PartTypeImpl("V6", engineCategory, PartImpl.class);
+    PartTypeImpl partType1 = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
+    PartTypeImpl partType2 = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
+    PartTypeImpl partType3 = new PartTypeImpl("V6", engineCategory, PartImpl.class, 10000);
 
     assertTrue(partType1.equals(partType2));
     assertFalse(partType1.equals(partType3));

@@ -64,13 +64,14 @@ public class Catalogue {
     for (JsonNode partTypeNode : partTypesNode) {
       String partTypeName = partTypeNode.get("name").asText();
       String categoryName = partTypeNode.get("category").get("name").asText();
+      int partTypePrice = partTypeNode.get("price").asInt();
 
       Category category = categories.get(categoryName);
       if (category == null) {
         throw new IllegalStateException("Category not found: " + categoryName);
       }
 
-      PartType partType = new PartTypeImpl(partTypeName, category, PartImpl.class);
+      PartType partType = new PartTypeImpl(partTypeName, category, PartImpl.class, partTypePrice);
       partTypes.add(partType);
     }
   }
