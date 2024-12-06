@@ -3,14 +3,8 @@ package fr.istic.bodin_bodier.cartaylor.impl.categories;
 import fr.istic.bodin_bodier.cartaylor.impl.AbstractCategory;
 
 public class ExteriorCategory extends AbstractCategory {
-  public ExteriorCategory() {
-    super("Exterior");
-    this.color = Color.BLACK;
-    this.paintType = "Classic";
-  }
 
-   
-  public enum Color {
+  enum Color {
     RED,
     BLUE,
     GREEN,
@@ -19,9 +13,24 @@ public class ExteriorCategory extends AbstractCategory {
     GREY
   }
 
+  enum PaintType {
+    CLASSIC, METALLIC, SPORT
+  }
+
   private Color color;
-  // Propriétés spécifiques à l'extérieur
-  private String paintType; // "Classic", "Metallic", "Sport"
- 
-  
+  private PaintType paintType;
+
+  public ExteriorCategory() {
+    super("Exterior");
+    this.color = Color.BLACK;
+    this.paintType = PaintType.CLASSIC;
+  }
+
+  public Color getColor() {
+    return color;
+  }
+
+  public PaintType getPaintType() {
+    return paintType;
+  }
 }
