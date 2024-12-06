@@ -3,12 +3,25 @@ package fr.istic.bodin_bodier.cartaylor.impl.categories;
 import fr.istic.bodin_bodier.cartaylor.impl.AbstractCategory;
 
 public class TransmissionCategory extends AbstractCategory {
-  public TransmissionCategory() {
-    super("Transmission");
+
+  enum TransmissionType {
+    MANUAL, AUTOMATIC, SEQUENTIAL
   }
 
   // Propriétés spécifiques à la transmission
-  private String type; // "Manual", "Automatic", "Sequential"
-  private int gears;
-  private boolean fourWheelDrive;
+  private TransmissionType type;
+
+  public TransmissionCategory() {
+    super("Transmission");
+    this.type = TransmissionType.MANUAL;
+  }
+
+  public TransmissionCategory(TransmissionType type) {
+    super("Transmission");
+    this.type = type;
+  }
+
+  public TransmissionType getType() {
+    return type;
+  }
 }
