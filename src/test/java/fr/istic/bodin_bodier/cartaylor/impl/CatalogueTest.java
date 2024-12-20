@@ -2,7 +2,6 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
-import fr.istic.bodin_bodier.cartaylor.impl.categories.*;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
-import fr.istic.bodin_bodier.cartaylor.impl.categories.TransmissionCategory;
 
 import java.util.Set;
 
