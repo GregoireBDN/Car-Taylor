@@ -1,14 +1,14 @@
 package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
-import fr.istic.bodin_bodier.cartaylor.api.Element;
+
 import fr.istic.bodin_bodier.cartaylor.api.Visitor;
 import java.util.Objects;
 
 /**
  * Classe abstraite représentant une catégorie de pièces.
  */
-public abstract class AbstractCategory implements Category, Element {
+public abstract class AbstractCategory implements Category {
   private final String name;
 
   /**

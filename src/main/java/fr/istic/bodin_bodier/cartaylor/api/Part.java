@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Interface représentant une pièce dans le configurateur de véhicule.
  */
-public interface Part extends Element {
+public interface Part extends PropertyManager, Element {
   default String getName() {
     return this.getClass().getTypeName();
   }

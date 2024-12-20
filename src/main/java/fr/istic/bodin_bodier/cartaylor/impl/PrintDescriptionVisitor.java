@@ -4,7 +4,6 @@ import fr.istic.bodin_bodier.cartaylor.api.Visitor;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.Configuration;
-import fr.istic.bodin_bodier.cartaylor.api.Configurator;
 import fr.istic.bodin_bodier.cartaylor.api.Part;
 
 import java.io.PrintStream;

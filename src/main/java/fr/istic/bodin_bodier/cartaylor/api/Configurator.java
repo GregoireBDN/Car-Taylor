@@ -1,6 +1,5 @@
 package fr.istic.bodin_bodier.cartaylor.api;
 
-import java.io.PrintStream;
 import java.util.Set;
 
 /**

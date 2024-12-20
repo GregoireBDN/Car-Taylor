@@ -2,7 +2,6 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.*;
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.Set;
 import java.util.stream.Collectors;
 import fr.istic.bodin_bodier.cartaylor.api.Catalog;
