@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 public class ExteriorCategoryTest {
 
+  /**
+   * Teste le constructeur par défaut de ExteriorCategory.
+   */
   @Test
   public void testDefaultConstructor() {
     ExteriorCategory exterior = new ExteriorCategory();
@@ -14,6 +17,9 @@ public class ExteriorCategoryTest {
     assertEquals(ExteriorCategory.PaintType.CLASSIC, exterior.getPaintType());
   }
 
+  /**
+   * Teste la méthode equals de ExteriorCategory.
+   */
   @Test
   public void testEquals() {
     ExteriorCategory exterior1 = new ExteriorCategory();
@@ -21,19 +27,14 @@ public class ExteriorCategoryTest {
     ExteriorCategory exterior3 = new ExteriorCategory();
     exterior3.setColor(ExteriorCategory.Color.RED); // Simule un changement de couleur
 
-    // Teste l'égalité entre deux objets identiques
     assertTrue(exterior1.equals(exterior2));
 
-    // Teste l'inégalité entre deux objets différents
     assertFalse(exterior1.equals(exterior3));
 
-    // Teste l'égalité avec le même objet
     assertTrue(exterior1.equals(exterior1));
 
-    // Teste l'inégalité avec un objet null
     assertFalse(exterior1.equals(null));
 
-    // Teste l'inégalité avec un objet d'une classe différente
     assertFalse(exterior1.equals("Some String"));
   }
 }

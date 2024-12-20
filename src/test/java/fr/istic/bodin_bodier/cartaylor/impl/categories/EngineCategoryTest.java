@@ -4,8 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests unitaires pour la classe EngineCategory.
+ */
 public class EngineCategoryTest {
 
+  /**
+   * Teste le constructeur par défaut de EngineCategory.
+   */
   @Test
   public void testDefaultConstructor() {
     EngineCategory engine = new EngineCategory();
@@ -14,6 +20,9 @@ public class EngineCategoryTest {
     assertEquals(EngineCategory.FuelType.Diesel, engine.getFuelType());
   }
 
+  /**
+   * Teste les méthodes setters de EngineCategory.
+   */
   @Test
   public void testSetters() {
     EngineCategory engine = new EngineCategory();
@@ -24,6 +33,9 @@ public class EngineCategoryTest {
     assertEquals(EngineCategory.FuelType.Gasoline, engine.getFuelType());
   }
 
+  /**
+   * Teste la méthode equals de EngineCategory.
+   */
   @Test
   public void testEquals() {
     EngineCategory engine1 = new EngineCategory();

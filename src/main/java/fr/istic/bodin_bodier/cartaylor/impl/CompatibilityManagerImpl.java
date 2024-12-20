@@ -18,7 +18,6 @@ import java.util.*;
  */
 public class CompatibilityManagerImpl implements CompatibilityManager {
 
-  // Maps pour stocker les incompatibilités et les exigences
   private final Map<PartType, Set<PartType>> incompatibilities;
 
   private final Map<PartType, Set<PartType>> requirements;

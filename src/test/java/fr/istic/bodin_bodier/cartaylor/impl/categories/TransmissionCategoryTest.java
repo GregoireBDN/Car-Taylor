@@ -4,8 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests unitaires pour la classe TransmissionCategory.
+ */
 public class TransmissionCategoryTest {
 
+  /**
+   * Teste le constructeur par défaut de TransmissionCategory.
+   */
   @Test
   public void testDefaultConstructor() {
     TransmissionCategory transmission = new TransmissionCategory();
@@ -13,6 +19,9 @@ public class TransmissionCategoryTest {
     assertEquals(TransmissionCategory.TransmissionType.MANUAL, transmission.getType());
   }
 
+  /**
+   * Teste le constructeur paramétré de TransmissionCategory.
+   */
   @Test
   public void testParameterizedConstructor() {
     TransmissionCategory transmission = new TransmissionCategory(TransmissionCategory.TransmissionType.AUTOMATIC);
@@ -20,6 +29,9 @@ public class TransmissionCategoryTest {
     assertEquals(TransmissionCategory.TransmissionType.AUTOMATIC, transmission.getType());
   }
 
+  /**
+   * Teste la méthode equals de TransmissionCategory.
+   */
   @Test
   public void testEquals() {
     TransmissionCategory transmission1 = new TransmissionCategory(TransmissionCategory.TransmissionType.MANUAL);
@@ -28,16 +40,12 @@ public class TransmissionCategoryTest {
 
     assertTrue(transmission1.equals(transmission2));
 
-    // Teste l'inégalité entre deux objets différents
     assertFalse(transmission1.equals(transmission3));
 
-    // Teste l'égalité avec le même objet
     assertTrue(transmission1.equals(transmission1));
 
-    // Teste l'inégalité avec un objet null
     assertFalse(transmission1.equals(null));
 
-    // Teste l'inégalité avec un objet d'une classe différente
     assertFalse(transmission1.equals("Some String"));
   }
 }

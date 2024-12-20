@@ -168,6 +168,11 @@
                     <goals>
                         <goal>report</goal>
                     </goals>
+                    <configuration>
+                        <excludes>
+                            <exclude>fr/istic/bodin_bodier/cartaylor/gui/**</exclude>
+                        </excludes>
+                    </configuration>
                 </execution>
             </executions>
         </plugin>

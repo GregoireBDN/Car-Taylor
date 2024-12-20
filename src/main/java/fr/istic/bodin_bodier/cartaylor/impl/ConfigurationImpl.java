@@ -42,8 +42,6 @@ public class ConfigurationImpl implements Configuration {
       }
       return false;
     }
-
-    // Vérifier les exigences
     for (PartType selectedPart : getSelectedParts()) {
       Set<PartType> requirements = configurator.getCompatibilityChecker().getRequirements(selectedPart);
       if (!getSelectedParts().containsAll(requirements)) {
