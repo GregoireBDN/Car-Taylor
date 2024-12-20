@@ -2,9 +2,9 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +23,7 @@ public class CatalogueTest {
   /**
    * Initialise un nouveau catalogue avant chaque test.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     catalogue = new Catalogue();
   }
@@ -46,11 +46,11 @@ public class CatalogueTest {
 
       catalogue.loadFromJSON(inputStream);
       Set<PartType> partTypes = catalogue.getPartTypes();
-      assertFalse("Le catalogue devrait contenir des types de pièces", partTypes.isEmpty());
+      assertFalse(partTypes.isEmpty(), "Le catalogue devrait contenir des types de pièces");
 
       // Vérification des catégories spécifiques
       Set<Category> categories = catalogue.getCategories();
-      assertFalse("Le catalogue devrait contenir des catégories", categories.isEmpty());
+      assertFalse(categories.isEmpty(), "Le catalogue devrait contenir des catégories");
       assertEquals(4, categories.size());
       assertTrue(categories.contains(catalogue.getCategory("Engine")));
       assertTrue(categories.contains(catalogue.getCategory("Transmission")));
@@ -64,8 +64,10 @@ public class CatalogueTest {
    * 
    * @throws IOException
    */
-  @Test(expected = IOException.class)
-  public void testLoadFromInvalidPath() throws IOException {
-    catalogue.loadFromJSON("invalid/path.json");
+  @Test
+  public void testLoadFromInvalidPath() {
+    assertThrows(IOException.class, () -> {
+      catalogue.loadFromJSON("invalid/path.json");
+    });
   }
 }

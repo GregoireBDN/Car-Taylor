@@ -2,9 +2,9 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.*;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.HashSet;
@@ -29,7 +29,7 @@ public class ConfigurationImplTest {
   /**
    * Initialise l'environnement de test avec des mocks et des données de test.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     configurator = mock(Configurator.class);
     compatibilityChecker = mock(CompatibilityChecker.class);

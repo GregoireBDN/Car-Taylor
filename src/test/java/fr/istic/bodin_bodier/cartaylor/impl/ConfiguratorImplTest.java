@@ -1,9 +1,9 @@
 package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.*;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
 
 import java.util.Set;
@@ -23,7 +23,7 @@ public class ConfiguratorImplTest {
   /**
    * Initialise le configurateur avec des données de test.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     configurator = new ConfiguratorImpl("data/test-catalogue.json");
   }

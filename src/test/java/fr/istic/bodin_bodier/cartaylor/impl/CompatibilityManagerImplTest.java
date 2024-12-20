@@ -4,9 +4,9 @@ import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.TransmissionCategory;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -40,7 +40,7 @@ public class CompatibilityManagerImplTest {
    * Crée un nouveau gestionnaire de compatibilité et initialise
    * les pièces de test avec leurs relations.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     compatibilityManager = new CompatibilityManagerImpl();
     Category engineCategory = new EngineCategory();
@@ -144,8 +144,10 @@ public class CompatibilityManagerImplTest {
    * @throws IllegalArgumentException attendue lors de l'utilisation de paramètres
    *                                  null
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testNullParameters() {
-    compatibilityManager.addIncompatibilities(null, targetSet);
+    assertThrows(IllegalArgumentException.class, () -> {
+      compatibilityManager.addIncompatibilities(null, targetSet);
+    });
   }
 }

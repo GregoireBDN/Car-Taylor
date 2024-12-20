@@ -2,9 +2,9 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests unitaires pour la classe PartTypeImpl.
@@ -20,7 +20,7 @@ public class PartTypeImplTest {
   /**
    * Initialise la catégorie de test avant chaque test.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     engineCategory = new EngineCategory();
   }
@@ -40,18 +40,22 @@ public class PartTypeImplTest {
    * Vérifie qu'une exception est levée lors de la création
    * d'un type de pièce avec un nom null.
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testNullName() {
-    new PartTypeImpl(null, engineCategory, PartImpl.class, 10000);
+    assertThrows(IllegalArgumentException.class, () -> {
+      new PartTypeImpl(null, engineCategory, PartImpl.class, 10000);
+    });
   }
 
   /**
    * Vérifie qu'une exception est levée lors de la création
    * d'un type de pièce avec une catégorie null.
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testNullCategory() {
-    new PartTypeImpl("V8", null, PartImpl.class, 10000);
+    assertThrows(IllegalArgumentException.class, () -> {
+      new PartTypeImpl("V8", null, PartImpl.class, 10000);
+    });
   }
 
   /**
