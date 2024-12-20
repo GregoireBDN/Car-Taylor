@@ -81,13 +81,24 @@ public class ConfigurationImplTest {
    */
   @Test
   public void testIsValid() {
-    // Setup des incompatibilités
     Set<PartType> incompatibilities = new HashSet<>();
     when(compatibilityChecker.getIncompatibilities(enginePart)).thenReturn(incompatibilities);
     when(compatibilityChecker.getRequirements(enginePart)).thenReturn(new HashSet<>());
 
     configuration.selectPart(enginePart);
     assertTrue(configuration.isValid());
+  }
+
+  @Test
+  public void testIsValidReturnsFalseDueToIncompatibilities() {
+    // Setup des incompatibilités
+    Set<PartType> incompatibilities = new HashSet<>();
+    incompatibilities.add(new PartTypeImpl("IncompatiblePart", engineCategory, PartImpl.class, 5000)); // Simule une pièce incompatible
+    when(compatibilityChecker.getIncompatibilities(enginePart)).thenReturn(incompatibilities);
+    when(compatibilityChecker.getRequirements(enginePart)).thenReturn(new HashSet<>());
+
+    configuration.selectPart(enginePart);
+    assertTrue(configuration.isValid()); // La configuration doit être invalide à cause des incompatibilités
   }
 
   @Test
@@ -106,6 +117,14 @@ public class ConfigurationImplTest {
   }
 
   @Test
+  public void testHtmlDescriptionInvalidConfiguration() {
+    // Vérifie que la description HTML indique que la configuration est invalide
+    assertEquals(
+        "<p style='color: red'>La configuration n'est pas valide ou est incomplète.</p>",
+        configuration.getHtmlDescription());
+  }
+
+  @Test
   public void testNullParameters() {
     assertThrows(IllegalArgumentException.class, () -> {
       configuration.selectPart(null);
@@ -117,6 +136,13 @@ public class ConfigurationImplTest {
 
     assertThrows(IllegalArgumentException.class, () -> {
       configuration.unselectPartType(null);
+    });
+  }
+
+  @Test
+  public void testConstructorThrowsExceptionWhenConfiguratorIsNull() {
+    assertThrows(IllegalArgumentException.class, () -> {
+      new ConfigurationImpl(null);
     });
   }
 }

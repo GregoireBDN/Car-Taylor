@@ -110,6 +110,26 @@ Le projet inclut des tests unitaires complets. Pour les exécuter :
 mvn test
 ```
 
+### Tests de couverture avec JaCoCo
+
+Pour tester la couverture de votre code avec JaCoCo, suivez les étapes ci-dessous :
+
+1. **Exécutez les tests avec Maven** :
+   Ouvrez votre terminal et exécutez la commande suivante pour lancer les tests et générer le rapport de couverture :
+
+   ```bash
+   mvn clean test
+   ```
+
+2. **Ouvrir le rapport de couverture** :
+   Le rapport de couverture sera disponible dans le répertoire `target/site/jacoco`. Pour ouvrir le rapport, ouvrez le fichier `index.html` dans votre navigateur. Vous pouvez le faire en utilisant la commande suivante :
+
+   ```bash
+   open target/site/jacoco/index.html
+   ```
+
+   (Utilisez `xdg-open` sur Linux ou `start` sur Windows si `open` ne fonctionne pas.)
+
 ## Principes d'Architecture
 
 - **Séparation des préoccupations** : API/Implémentation/GUI

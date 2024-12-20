@@ -96,4 +96,21 @@ public class ConfiguratorImplTest {
     CompatibilityChecker checker = configurator.getCompatibilityChecker();
     assertNotNull(checker);
   }
+
+  @Test
+  public void testConstructorThrowsExceptionWhenFileNotFound() {
+    // Simulez un chemin de fichier invalide
+    assertThrows(RuntimeException.class, () -> {
+      new ConfiguratorImpl("invalidPath.json");
+    });
+  }
+
+  @Test
+  public void testConstructorThrowsExceptionWhenFileIsMalformed() {
+    // Simulez un chemin de fichier JSON mal formé
+    // Vous devrez créer un fichier JSON invalide dans votre répertoire de test
+    assertThrows(RuntimeException.class, () -> {
+      new ConfiguratorImpl("data/invalid-catalogue.json");
+    });
+  }
 }

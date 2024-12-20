@@ -34,5 +34,14 @@ public class InteriorCategoryTest {
 
     assertTrue(interior1.equals(interior2));
     assertFalse(interior1.equals(interior3));
+    
+    // Cas de test supplémentaires
+    assertFalse(interior1.equals(null)); // Test avec null
+    assertFalse(interior1.equals("not an InteriorCategory")); // Test avec un objet d'un type différent
+
+    // Test avec un objet ayant des valeurs différentes
+    InteriorCategory interior4 = new InteriorCategory(InteriorCategory.FinishType.STANDARD,
+        InteriorCategory.Material.CLOTH);
+    assertFalse(interior1.equals(interior4)); // Différent matériau
   }
 }
