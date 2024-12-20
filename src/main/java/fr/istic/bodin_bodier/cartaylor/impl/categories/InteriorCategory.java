@@ -62,4 +62,14 @@ public class InteriorCategory extends AbstractCategory {
   public Material getMaterial() {
     return material;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!super.equals(o))
+      return false;
+    if (!(o instanceof InteriorCategory))
+      return false;
+    InteriorCategory that = (InteriorCategory) o;
+    return finishType == that.finishType && material == that.material;
+  }
 }

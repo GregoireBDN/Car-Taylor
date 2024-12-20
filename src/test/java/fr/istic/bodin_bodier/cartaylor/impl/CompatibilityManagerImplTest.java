@@ -149,5 +149,25 @@ public class CompatibilityManagerImplTest {
     assertThrows(IllegalArgumentException.class, () -> {
       compatibilityManager.addIncompatibilities(null, targetSet);
     });
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      compatibilityManager.addIncompatibilities(partA, null);
+    });
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      compatibilityManager.addIncompatibilities(partA, new HashSet<PartType>() {
+        {
+          add(null);
+        }
+      });
+    });
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      compatibilityManager.removeIncompatibility(null, partB);
+    });
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      compatibilityManager.removeRequirement(null, partB);
+    });
   }
 }

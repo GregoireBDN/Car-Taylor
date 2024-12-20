@@ -1,73 +1,62 @@
 package fr.istic.bodin_bodier.cartaylor.impl;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import fr.istic.bodin_bodier.cartaylor.api.Category;
+import fr.istic.bodin_bodier.cartaylor.api.PartType;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Tests unitaires pour la classe PartTypeImpl.
- * 
- * <p>
- * Ces tests vérifient la création et le comportement des types de pièces
- * dans différentes situations (paramètres valides et invalides).
- *
- */
 public class PartTypeImplTest {
+
+  private PartType partType;
   private Category engineCategory;
 
-  /**
-   * Initialise la catégorie de test avant chaque test.
-   */
   @BeforeEach
   public void setUp() {
     engineCategory = new EngineCategory();
+    partType = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
   }
 
-  /**
-   * Vérifie qu'un type de pièce peut être créé avec des paramètres valides.
-   */
   @Test
-  public void testValidPartType() {
-    PartTypeImpl partType = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
+  public void testGetName() {
     assertEquals("V8", partType.getName());
-    assertEquals(engineCategory, partType.getCategory());
+  }
+
+  @Test
+  public void testGetPrice() {
     assertEquals(10000, partType.getPrice());
   }
 
-  /**
-   * Vérifie qu'une exception est levée lors de la création
-   * d'un type de pièce avec un nom null.
-   */
   @Test
-  public void testNullName() {
+  public void testGetCategory() {
+    assertEquals(engineCategory, partType.getCategory());
+  }
+
+  @Test
+  public void testEqualsAndHashCode() {
+    PartType samePartType = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
+    PartType differentPartType = new PartTypeImpl("V6", engineCategory, PartImpl.class, 8000);
+
+    assertEquals(partType, samePartType);
+    assertNotEquals(partType, differentPartType);
+    assertEquals(partType.hashCode(), samePartType.hashCode());
+    assertNotEquals(partType.hashCode(), differentPartType.hashCode());
+  }
+
+  @Test
+  public void testInvalidParameters() {
     assertThrows(IllegalArgumentException.class, () -> {
       new PartTypeImpl(null, engineCategory, PartImpl.class, 10000);
     });
-  }
 
-  /**
-   * Vérifie qu'une exception est levée lors de la création
-   * d'un type de pièce avec une catégorie null.
-   */
-  @Test
-  public void testNullCategory() {
     assertThrows(IllegalArgumentException.class, () -> {
       new PartTypeImpl("V8", null, PartImpl.class, 10000);
     });
-  }
 
-  /**
-   * Vérifie que la comparaison entre types de pièces fonctionne correctement.
-   */
-  @Test
-  public void testEquals() {
-    PartTypeImpl partType1 = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
-    PartTypeImpl partType2 = new PartTypeImpl("V8", engineCategory, PartImpl.class, 10000);
-    PartTypeImpl partType3 = new PartTypeImpl("V6", engineCategory, PartImpl.class, 10000);
-
-    assertTrue(partType1.equals(partType2));
-    assertFalse(partType1.equals(partType3));
+    assertThrows(IllegalArgumentException.class, () -> {
+      new PartTypeImpl("V8", engineCategory, PartImpl.class, -100);
+    });
   }
 }

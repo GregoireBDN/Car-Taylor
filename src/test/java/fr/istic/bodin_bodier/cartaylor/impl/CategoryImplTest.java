@@ -35,5 +35,33 @@ public class CategoryImplTest {
 
     assertTrue(category1.equals(category2));
     assertFalse(category1.equals(category3));
+    assertTrue(category1.equals(category1));
+    assertFalse(category1.equals(null));
+    assertFalse(category1.equals("Some String"));
+  }
+
+  @Test
+  public void testHashCode() {
+    Category category1 = new EngineCategory();
+    Category category2 = new EngineCategory();
+    Category category3 = new TransmissionCategory();
+
+    assertEquals(category1.hashCode(), category2.hashCode());
+    assertNotEquals(category1.hashCode(), category3.hashCode());
+  }
+
+  @Test
+  public void testNameNotNullOrEmpty() {
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+      new AbstractCategory("") {
+      };
+    });
+    assertEquals("Le nom de la catégorie ne peut pas être null ou vide", exception.getMessage());
+
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      new AbstractCategory(null) {
+      };
+    });
+    assertEquals("Le nom de la catégorie ne peut pas être null ou vide", exception.getMessage());
   }
 }

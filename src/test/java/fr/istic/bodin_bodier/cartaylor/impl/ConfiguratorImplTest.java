@@ -4,7 +4,6 @@ import fr.istic.bodin_bodier.cartaylor.api.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
 
 import java.util.Set;
 
@@ -36,6 +35,18 @@ public class ConfiguratorImplTest {
     Set<Category> categories = configurator.getCategories();
     assertNotNull(categories);
     assertFalse(categories.isEmpty());
+    assertEquals(4, categories.size());
+  }
+
+  /**
+   * Vérifie que la récupération des types de pièces fonctionne correctement.
+   */
+  @Test
+  public void testGetPartTypes() {
+    Set<PartType> partTypes = configurator.getPartTypes();
+    assertNotNull(partTypes);
+    assertFalse(partTypes.isEmpty());
+    assertEquals(4, partTypes.size());
   }
 
   /**
@@ -44,10 +55,27 @@ public class ConfiguratorImplTest {
    */
   @Test
   public void testGetVariants() {
-    Category engineCategory = new EngineCategory();
+    Category engineCategory = configurator.getCategories().stream()
+        .filter(c -> c.getName().equals("Engine"))
+        .findFirst()
+        .orElse(null);
+    assertNotNull(engineCategory);
+
     Set<PartType> variants = configurator.getVariants(engineCategory);
     assertNotNull(variants);
     assertFalse(variants.isEmpty());
+    assertEquals(2, variants.size());
+  }
+
+  /**
+   * Vérifie que la récupération des variantes avec une catégorie null
+   * lève une exception appropriée.
+   */
+  @Test
+  public void testGetVariantsWithNullCategory() {
+    assertThrows(IllegalArgumentException.class, () -> {
+      configurator.getVariants(null);
+    });
   }
 
   /**

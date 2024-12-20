@@ -91,10 +91,32 @@ public class ConfigurationImplTest {
   }
 
   @Test
+  public void testUnselectPartType() {
+    configuration.selectPart(enginePart);
+    configuration.unselectPartType(engineCategory);
+    assertNull(configuration.getSelectionForCategory(engineCategory));
+  }
+
+  @Test
   public void testHtmlDescription() {
     configuration.selectPart(enginePart);
     assertEquals(
         "<div class='configuration'><h3>Configuration de la voiture</h3><ul><li><strong>Engine:</strong> V8<br>Prix: 10000 €</li><li>Prix total: 10000 €</li></ul></div>",
         configuration.getHtmlDescription());
+  }
+
+  @Test
+  public void testNullParameters() {
+    assertThrows(IllegalArgumentException.class, () -> {
+      configuration.selectPart(null);
+    });
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      configuration.getSelectionForCategory(null);
+    });
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      configuration.unselectPartType(null);
+    });
   }
 }

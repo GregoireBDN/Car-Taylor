@@ -52,4 +52,32 @@ public class EngineCategory extends AbstractCategory {
   public int getPower() {
     return power;
   }
+
+  /**
+   * Modifie la puissance du moteur.
+   * 
+   * @param power la nouvelle puissance du moteur en kW
+   */
+  public void setPower(int power) {
+    this.power = power;
+  }
+
+  /**
+   * Modifie le type de carburant du moteur.
+   * 
+   * @param fuelType le nouveau type de carburant du moteur
+   */
+  public void setFuelType(FuelType fuelType) {
+    this.fuelType = fuelType;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!super.equals(o))
+      return false;
+    if (!(o instanceof EngineCategory))
+      return false;
+    EngineCategory that = (EngineCategory) o;
+    return power == that.power && fuelType == that.fuelType;
+  }
 }

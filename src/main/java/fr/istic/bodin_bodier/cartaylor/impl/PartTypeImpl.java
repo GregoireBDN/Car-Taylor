@@ -5,6 +5,7 @@ import fr.istic.bodin_bodier.cartaylor.api.PartType;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.lang.reflect.Constructor;
+import java.util.Objects;
 
 /**
  * Implémentation de l'interface PartType représentant un type de pièce
@@ -36,6 +37,9 @@ public class PartTypeImpl implements PartType {
     }
     if (category == null) {
       throw new IllegalArgumentException("La catégorie ne peut pas être null");
+    }
+    if (price < 0) {
+      throw new IllegalArgumentException("Le prix ne peut pas être négatif");
     }
     this.name = name;
     this.category = category;
@@ -77,10 +81,27 @@ public class PartTypeImpl implements PartType {
       return true;
     if (o == null || getClass() != o.getClass())
       return false;
-    PartTypeImpl partType = (PartTypeImpl) o;
-    return name.equals(partType.name) && category.equals(partType.category);
+    PartTypeImpl that = (PartTypeImpl) o;
+    return price == that.price &&
+        Objects.equals(name, that.name) &&
+        Objects.equals(category, that.category);
   }
 
+  /**
+   * Retourne le code de hachage de ce type de pièce.
+   * 
+   * @return le code de hachage de la pièce
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, category, price);
+  }
+
+  /**
+   * Crée une nouvelle instance de la pièce associée à ce type.
+   * 
+   * @return une nouvelle instance de la pièce
+   */
   public PartImpl newInstance() {
     Constructor<? extends PartImpl> constructor;
     try {
@@ -93,6 +114,11 @@ public class PartTypeImpl implements PartType {
     return null;
   }
 
+  /**
+   * Retourne le prix de la pièce.
+   * 
+   * @return le prix de la pièce
+   */
   @Override
   public int getPrice() {
     return price;

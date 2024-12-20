@@ -55,4 +55,23 @@ public class ExteriorCategory extends AbstractCategory {
   public PaintType getPaintType() {
     return paintType;
   }
+
+  /**
+   * Modifie la couleur de la carrosserie.
+   * 
+   * @param color la nouvelle couleur de la carrosserie
+   */
+  public void setColor(Color color) {
+    this.color = color;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!super.equals(o))
+      return false;
+    if (!(o instanceof ExteriorCategory))
+      return false;
+    ExteriorCategory that = (ExteriorCategory) o;
+    return color == that.color && paintType == that.paintType;
+  }
 }

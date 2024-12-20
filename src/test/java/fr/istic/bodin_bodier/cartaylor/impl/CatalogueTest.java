@@ -70,4 +70,24 @@ public class CatalogueTest {
       catalogue.loadFromJSON("invalid/path.json");
     });
   }
+
+  @Test
+  public void testInitialization() {
+    Set<Category> categories = catalogue.getCategories();
+    assertEquals(4, categories.size());
+    assertNotNull(catalogue.getCategory("Engine"));
+    assertNotNull(catalogue.getCategory("Transmission"));
+    assertNotNull(catalogue.getCategory("Exterior"));
+    assertNotNull(catalogue.getCategory("Interior"));
+  }
+
+  @Test
+  public void testLoadFromJSONValid() throws IOException {
+    try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("data/test-catalogue.json")) {
+      assertNotNull(inputStream, "Le fichier JSON de test doit être présent");
+      catalogue.loadFromJSON(inputStream);
+      Set<PartType> partTypes = catalogue.getPartTypes();
+      assertNotNull(partTypes, "Les types de pièces devraient être chargés");
+    }
+  }
 }

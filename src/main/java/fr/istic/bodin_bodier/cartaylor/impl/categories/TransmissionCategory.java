@@ -39,4 +39,12 @@ public class TransmissionCategory extends AbstractCategory {
   public TransmissionType getType() {
     return type;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!super.equals(o))
+      return false;
+    TransmissionCategory that = (TransmissionCategory) o;
+    return type == that.type;
+  }
 }
