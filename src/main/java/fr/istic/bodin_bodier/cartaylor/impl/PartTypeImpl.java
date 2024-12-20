@@ -2,10 +2,12 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
+import fr.istic.bodin_bodier.cartaylor.api.Element;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.lang.reflect.Constructor;
 import java.util.Objects;
+import fr.istic.bodin_bodier.cartaylor.api.Visitor;
 
 /**
  * Implémentation de l'interface PartType représentant un type de pièce
@@ -17,7 +19,7 @@ import java.util.Objects;
  *
  * @see PartType
  */
-public class PartTypeImpl implements PartType {
+public class PartTypeImpl implements PartType, Element {
   private final String name;
   private final int price;
   private Class<? extends PartImpl> classRef;
@@ -45,6 +47,11 @@ public class PartTypeImpl implements PartType {
     this.category = category;
     this.classRef = classRef;
     this.price = price;
+  }
+
+  @Override
+  public void accept(Visitor visitor) {
+    visitor.visit(this);
   }
 
   /**

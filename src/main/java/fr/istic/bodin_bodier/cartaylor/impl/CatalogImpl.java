@@ -12,10 +12,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
-import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
+import fr.istic.bodin_bodier.cartaylor.api.Catalog;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.ExteriorCategory;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.InteriorCategory;
 import fr.istic.bodin_bodier.cartaylor.impl.categories.TransmissionCategory;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
 
 /**
  * Classe gérant le catalogue des pièces et catégories disponibles
@@ -25,23 +26,22 @@ import fr.istic.bodin_bodier.cartaylor.impl.categories.TransmissionCategory;
  * Cette classe permet le chargement des données depuis un fichier JSON
  * et maintient la cohérence entre les catégories et les types de pièces.
  * 
- * @see Catalogue
+ * @see Catalog
  */
-public class Catalogue {
+public class CatalogImpl implements Catalog {
 
   /** Map associant les noms des catégories à leurs instances */
   private final Map<String, Category> categories;
   /** Ensemble des types de pièces disponibles */
   private final Set<PartType> partTypes;
 
-  public Catalogue() {
+  public CatalogImpl() {
     this.categories = new HashMap<>();
     this.partTypes = new HashSet<>();
     initializeCategories();
   }
 
   private void initializeCategories() {
-    // Initialisation des catégories prédéfinies
     Category engine = new EngineCategory();
     Category transmission = new TransmissionCategory();
     Category exterior = new ExteriorCategory();

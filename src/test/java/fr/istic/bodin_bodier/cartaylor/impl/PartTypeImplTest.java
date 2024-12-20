@@ -98,9 +98,6 @@ public class PartTypeImplTest {
   @Test
   public void testNewInstanceWithInvalidConstructor() {
     class InvalidPartImpl extends PartImpl {
-      public InvalidPartImpl(String param) {
-        super();
-      }
     }
 
     PartTypeImpl invalidPartType = new PartTypeImpl("Invalid", engineCategory, InvalidPartImpl.class, 5000);

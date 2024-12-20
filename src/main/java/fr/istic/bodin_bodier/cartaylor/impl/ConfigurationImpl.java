@@ -126,6 +126,8 @@ public class ConfigurationImpl implements Configuration {
     selections.clear();
   }
 
+  @Override
+
   /**
    * Génère une description HTML de la configuration actuelle.
    * 

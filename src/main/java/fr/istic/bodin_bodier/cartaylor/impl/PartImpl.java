@@ -6,11 +6,13 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import fr.istic.bodin_bodier.cartaylor.api.Category;
+import fr.istic.bodin_bodier.cartaylor.api.Element;
+import fr.istic.bodin_bodier.cartaylor.api.Visitor;
 
 /**
  * Implémentation de la classe Part.
  */
-public class PartImpl implements Part {
+public class PartImpl implements Part, Element {
 
   private PartType type;
 
@@ -61,6 +63,11 @@ public class PartImpl implements Part {
     properties.put(name, new Property(getter, setter, possibleValues));
   }
 
+  @Override
+  public void accept(Visitor visitor) {
+    visitor.visit(this);
+  }
+
   /**
    * Retourne les noms des propriétés de la pièce.
    * 
@@ -108,7 +115,7 @@ public class PartImpl implements Part {
         throw new IllegalArgumentException("Valeur de propriété invalide : " + propertyValue);
       }
     } else {
-      throw new IllegalArgumentException("Nom de propriété invalide : " + propertyName);
+      throw new IllegalArgumentException("bad property name or value: " + propertyName);
     }
   }
 

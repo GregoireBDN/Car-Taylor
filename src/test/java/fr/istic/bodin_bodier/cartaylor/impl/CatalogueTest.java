@@ -2,6 +2,7 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
+import fr.istic.bodin_bodier.cartaylor.api.Catalog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,14 +20,14 @@ import java.util.Set;
  * et la gestion des catégories et types de pièces.
  */
 public class CatalogueTest {
-  private Catalogue catalogue;
+  private Catalog catalogue;
 
   /**
    * Initialise un nouveau catalogue avant chaque test.
    */
   @BeforeEach
   public void setUp() {
-    catalogue = new Catalogue();
+    catalogue = new CatalogImpl();
   }
 
   /**

@@ -1,5 +1,6 @@
 package fr.istic.bodin_bodier.cartaylor.api;
 
+import java.io.PrintStream;
 import java.util.Set;
 
 /**
@@ -53,4 +54,11 @@ public interface Configurator {
    * @return le vérificateur de compatibilité
    */
   CompatibilityChecker getCompatibilityChecker();
+
+  /**
+   * Retourne le catalogue utilisé par le configurateur.
+   * 
+   * @return le catalogue
+   */
+  void printDescription(PrintStream stream);
 }

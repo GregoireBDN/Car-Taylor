@@ -2,8 +2,10 @@ package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.*;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Set;
 import java.util.stream.Collectors;
+import fr.istic.bodin_bodier.cartaylor.api.Catalog;
 
 /**
  * Implémentation de l'interface Configurator qui gère le processus
@@ -17,7 +19,7 @@ import java.util.stream.Collectors;
  * @see Configurator
  */
 public class ConfiguratorImpl implements Configurator {
-  private final Catalogue catalogue;
+  private final Catalog catalogue;
   private final CompatibilityManager compatibilityManager;
   private final Configuration configuration;
 
@@ -28,7 +30,7 @@ public class ConfiguratorImpl implements Configurator {
    * @throws RuntimeException si le fichier de ressources ne peut pas être chargé
    */
   public ConfiguratorImpl(String resourcePath) {
-    this.catalogue = new Catalogue();
+    this.catalogue = new CatalogImpl();
     try {
       // Charger le catalogue depuis les ressources
       InputStream inputStream = getClass().getClassLoader()
@@ -101,5 +103,10 @@ public class ConfiguratorImpl implements Configurator {
   @Override
   public CompatibilityChecker getCompatibilityChecker() {
     return compatibilityManager;
+  }
+
+  @Override
+  public void printDescription(PrintStream stream) {
+    stream.println(configuration.getHtmlDescription());
   }
 }
