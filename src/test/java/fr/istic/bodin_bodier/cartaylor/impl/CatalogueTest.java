@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
@@ -60,9 +61,8 @@ public class CatalogueTest {
   }
 
   /**
-   * Test the loadFromJSON method with an invalid path
-   * 
-   * @throws IOException
+   * Vérifie que l'exception IOException est lancée lorsque le chemin est
+   * invalide.
    */
   @Test
   public void testLoadFromInvalidPath() {
@@ -71,6 +71,9 @@ public class CatalogueTest {
     });
   }
 
+  /**
+   * Vérifie que les catégories sont initialisées correctement.
+   */
   @Test
   public void testInitialization() {
     Set<Category> categories = catalogue.getCategories();
@@ -81,6 +84,11 @@ public class CatalogueTest {
     assertNotNull(catalogue.getCategory("Interior"));
   }
 
+  /**
+   * Vérifie que le chargement d'un fichier JSON valide fonctionne correctement.
+   * 
+   * @throws IOException
+   */
   @Test
   public void testLoadFromJSONValid() throws IOException {
     try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("data/test-catalogue.json")) {
@@ -89,5 +97,37 @@ public class CatalogueTest {
       Set<PartType> partTypes = catalogue.getPartTypes();
       assertNotNull(partTypes, "Les types de pièces devraient être chargés");
     }
+  }
+
+  /**
+   * Vérifie que les types de pièces pour une catégorie spécifique sont
+   * correctement chargés.
+   * 
+   * @throws IOException
+   */
+  @Test
+  public void testGetPartTypesForCategory() throws IOException {
+    try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("data/test-catalogue.json")) {
+      assertNotNull(inputStream, "Le fichier JSON de test doit être présent");
+      catalogue.loadFromJSON(inputStream);
+      Category engineCategory = catalogue.getCategory("Engine");
+      Set<PartType> enginePartTypes = catalogue.getPartTypesForCategory(engineCategory);
+      assertNotNull(enginePartTypes, "Les types de pièces pour la catégorie 'Engine' devraient être chargés");
+      assertFalse(enginePartTypes.isEmpty(), "La catégorie 'Engine' devrait contenir des types de pièces");
+    }
+  }
+
+  /**
+   * Vérifie que l'exception IllegalStateException est lancée lorsque la catégorie
+   * n'existe pas.
+   */
+  @Test
+  public void testLoadFromJSONWithInvalidCategory() {
+    String invalidJson = "{ \"partTypes\": [{ \"name\": \"InvalidPart\", \"category\": \"NonExistent\", \"price\": 100 }] }";
+    InputStream inputStream = new ByteArrayInputStream(invalidJson.getBytes());
+
+    assertThrows(IllegalStateException.class, () -> {
+      catalogue.loadFromJSON(inputStream);
+    }, "Une exception devrait être lancée pour une catégorie inexistante");
   }
 }

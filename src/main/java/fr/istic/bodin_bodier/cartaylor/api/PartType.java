@@ -1,5 +1,7 @@
 package fr.istic.bodin_bodier.cartaylor.api;
 
+import fr.istic.bodin_bodier.cartaylor.impl.PartImpl;
+
 /**
  * Interface représentant un type de pièce dans le configurateur de véhicule.
  * 
@@ -32,4 +34,11 @@ public interface PartType {
    * @return la catégorie de la pièce
    */
   Category getCategory();
+
+  /**
+   * Retourne une nouvelle instance de la pièce associée à ce type.
+   * 
+   * @return une nouvelle instance de la pièce associée à ce type
+   */
+  PartImpl newInstance();
 }

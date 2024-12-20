@@ -1,13 +1,21 @@
 package fr.istic.bodin_bodier.cartaylor.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 import fr.istic.bodin_bodier.cartaylor.api.PartType;
-import fr.istic.bodin_bodier.cartaylor.impl.categories.*;
-
-import java.io.*;
-import java.util.*;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.EngineCategory;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.ExteriorCategory;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.InteriorCategory;
+import fr.istic.bodin_bodier.cartaylor.impl.categories.TransmissionCategory;
 
 /**
  * Classe gérant le catalogue des pièces et catégories disponibles

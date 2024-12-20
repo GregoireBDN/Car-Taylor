@@ -7,10 +7,32 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import fr.istic.bodin_bodier.cartaylor.api.Category;
 
+/**
+ * Implémentation de la classe Part.
+ */
 public class PartImpl implements Part {
 
   private PartType type;
 
+  /**
+   * Constructeur de la classe PartImpl.
+   * 
+   * @param type Le type de la pièce.
+   */
+  public PartImpl(PartType type) {
+    this.type = type;
+  }
+
+  /**
+   * Constructeur par défaut de la classe PartImpl.
+   */
+  public PartImpl() {
+    this.type = null;
+  }
+
+  /**
+   * Classe interne pour représenter une propriété d'une pièce.
+   */
   private class Property {
     public final Supplier<String> getter;
     public final Consumer<String> setter;
@@ -26,16 +48,37 @@ public class PartImpl implements Part {
 
   private Map<String, Property> properties = new HashMap<>();
 
+  /**
+   * Ajoute une propriété à la pièce.
+   * 
+   * @param name           Le nom de la propriété.
+   * @param getter         Le getter pour la propriété.
+   * @param setter         Le setter pour la propriété.
+   * @param possibleValues Les valeurs possibles pour la propriété.
+   */
   protected void addProperty(String name, Supplier<String> getter, Consumer<String> setter,
       Set<String> possibleValues) {
     properties.put(name, new Property(getter, setter, possibleValues));
   }
 
+  /**
+   * Retourne les noms des propriétés de la pièce.
+   * 
+   * @return Un ensemble non modifiable des noms des propriétés.
+   */
   @Override
   public Set<String> getPropertyNames() {
     return Collections.unmodifiableSet(properties.keySet());
   }
 
+  /**
+   * Retourne la valeur d'une propriété de la pièce.
+   * 
+   * @param propertyName Le nom de la propriété.
+   * @return La valeur de la propriété, ou Optional.empty() si la propriété
+   *         n'existe
+   *         pas.
+   */
   @Override
   public Optional<String> getProperty(String propertyName) {
     Objects.requireNonNull(propertyName);
@@ -46,18 +89,36 @@ public class PartImpl implements Part {
     return Optional.empty();
   }
 
+  /**
+   * Définit la valeur d'une propriété de la pièce.
+   * 
+   * @param propertyName  Le nom de la propriété.
+   * @param propertyValue La valeur à définir.
+   */
   @Override
   public void setProperty(String propertyName, String propertyValue) {
     Objects.requireNonNull(propertyName);
     Objects.requireNonNull(propertyValue);
 
-    if ((properties.containsKey(propertyName)) && (properties.get(propertyName).setter != null)) {
-      properties.get(propertyName).setter.accept(propertyValue);
+    if (properties.containsKey(propertyName)) {
+      Property property = properties.get(propertyName);
+      if (property.setter != null && property.possibleValues.contains(propertyValue)) {
+        property.setter.accept(propertyValue);
+      } else {
+        throw new IllegalArgumentException("Valeur de propriété invalide : " + propertyValue);
+      }
     } else {
-      throw new IllegalArgumentException("bad property name or value: " + propertyName);
+      throw new IllegalArgumentException("Nom de propriété invalide : " + propertyName);
     }
   }
 
+  /**
+   * Retourne les valeurs possibles pour une propriété de la pièce.
+   * 
+   * @param propertyName Le nom de la propriété.
+   * @return Un ensemble non modifiable des valeurs possibles pour la propriété,
+   *         ou un ensemble vide si la propriété n'existe pas.
+   */
   @Override
   public Set<String> getAvailablePropertyValues(String propertyName) {
     if (properties.containsKey(propertyName)) {
@@ -66,11 +127,21 @@ public class PartImpl implements Part {
     return Collections.emptySet();
   }
 
+  /**
+   * Retourne le type de la pièce.
+   * 
+   * @return Le type de la pièce.
+   */
   @Override
   public PartType getType() {
     return type;
   }
 
+  /**
+   * Retourne la catégorie de la pièce.
+   * 
+   * @return La catégorie de la pièce.
+   */
   @Override
   public Category getCategory() {
     return type.getCategory();

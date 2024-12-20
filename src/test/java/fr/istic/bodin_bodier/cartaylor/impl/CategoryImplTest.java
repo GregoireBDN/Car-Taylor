@@ -40,6 +40,9 @@ public class CategoryImplTest {
     assertFalse(category1.equals("Some String"));
   }
 
+  /**
+   * Vérifie que le hashcode est correctement géré.
+   */
   @Test
   public void testHashCode() {
     Category category1 = new EngineCategory();
@@ -50,6 +53,9 @@ public class CategoryImplTest {
     assertNotEquals(category1.hashCode(), category3.hashCode());
   }
 
+  /**
+   * Vérifie que le nom ne peut pas être null ou vide.
+   */
   @Test
   public void testNameNotNullOrEmpty() {
     Exception exception = assertThrows(IllegalArgumentException.class, () -> {

@@ -59,4 +59,28 @@ public class PartTypeImplTest {
       new PartTypeImpl("V8", engineCategory, PartImpl.class, -100);
     });
   }
+
+  @Test
+  public void testNewInstance() {
+    // Teste la création d'une nouvelle instance de PartImpl
+    PartImpl partInstance = partType.newInstance();
+    assertNotNull(partInstance, "La méthode newInstance devrait retourner une instance non nulle de PartImpl");
+    assertEquals(PartImpl.class, partInstance.getClass(), "L'instance créée devrait être de type PartImpl");
+  }
+
+  @Test
+  public void testNewInstanceWithInvalidConstructor() {
+    class InvalidPartImpl extends PartImpl {
+      public InvalidPartImpl(String param) {
+        super();
+      }
+    }
+
+    PartTypeImpl invalidPartType = new PartTypeImpl("Invalid", engineCategory, InvalidPartImpl.class, 5000);
+
+    // Vérifie que la méthode newInstance échoue correctement
+    assertThrows(RuntimeException.class, () -> {
+      invalidPartType.newInstance();
+    }, "Une exception devrait être lancée si le constructeur par défaut n'est pas disponible");
+  }
 }

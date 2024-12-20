@@ -103,15 +103,13 @@ public class PartTypeImpl implements PartType {
    * @return une nouvelle instance de la pièce
    */
   public PartImpl newInstance() {
-    Constructor<? extends PartImpl> constructor;
     try {
-      constructor = classRef.getConstructor();
+      Constructor<? extends PartImpl> constructor = classRef.getConstructor();
       return constructor.newInstance();
     } catch (Exception e) {
       Logger.getGlobal().log(Level.SEVERE, "constructor call failed", e);
-      System.exit(-1);
+      throw new RuntimeException("Failed to create a new instance of PartImpl", e);
     }
-    return null;
   }
 
   /**
