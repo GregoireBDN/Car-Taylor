@@ -1,0 +1,51 @@
+@startuml
+
+actor User
+participant "Configurator" as configurator
+participant "Configuration" as configuration
+participant "EG210:PartType" as eg210
+participant "TSF7:PartType" as tsf7
+participant "XS:PartType" as xs
+participant "IS:PartType" as is
+participant "Engine:Categorie" as engine
+participant "Transmission:Categorie" as transmission
+participant "Exterior:Categorie" as exterior
+participant "Interior:Categorie" as interior
+
+User -> configurator: init()
+configurator -> configuration: visit(Configuration)
+configuration -> configurator: accept(Visitor)
+
+configuration -> eg210: visit(EG210)
+eg210 -> configurator: accept(Visitor)
+configurator -> eg210: (price=550, name="EG210")
+
+configuration -> tsf7: visit(TSF7)
+tsf7 -> configurator: accept(Visitor)
+configurator -> tsf7: (price=100, name="TSF7")
+
+configuration -> xs: visit(XS)
+xs -> configurator: accept(Visitor)
+configurator -> xs: (price=200, name="XS")
+
+configuration -> is: visit(IS)
+is -> configurator: accept(Visitor)
+configurator -> is: (price=350, name="IS")
+
+configurator -> engine: visit(Engine)
+engine -> configurator: accept(Visitor)
+configurator -> engine: (name="Engine")
+
+configurator -> transmission: visit(Transmission)
+transmission -> configurator: accept(Visitor)
+configurator -> transmission: (name="Transmission")
+
+configurator -> exterior: visit(Exterior)
+exterior -> configurator: accept(Visitor)
+configurator -> exterior: (name="Exterior")
+
+configurator -> interior: visit(Interior)
+interior -> configurator: accept(Visitor)
+configurator -> interior: (name="Interior")
+
+@enduml

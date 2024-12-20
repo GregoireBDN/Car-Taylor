@@ -1,0 +1,56 @@
+@startuml
+object "conf:Configurator" as configurator {
+     visitor : PrintDescription
+}
+
+object "config:Configuration" as configuration {
+    
+}
+
+object "eg210:PartType" as eg210 {
+    name = "EG210"
+    price = 550
+}
+
+object "tsf7:PartType" as tsf7 {
+    name = "TSF7"
+    price = 100
+}
+
+object "xs:PartType" as xs {
+    name = "XS"
+    price = 200
+}
+
+object "is:PartType" as is {
+    name = "IS"
+    price = 350
+}
+
+object "engine:Categorie" as engine {
+    name = "Engine"
+}
+
+object "transmission:Categorie" as transmission {
+    name = "Transmission"
+}
+
+object "exterior:Categorie" as exterior {
+    name = "Exterior"
+}
+
+object "interior:Categorie" as interior {
+    name = "Interior"
+}
+
+configurator o-- configuration
+configuration -- eg210
+configuration -- tsf7
+configuration -- xs
+configuration -- is
+
+eg210 -- engine
+tsf7 -- transmission
+xs -- exterior
+is -- interior
+@enduml
