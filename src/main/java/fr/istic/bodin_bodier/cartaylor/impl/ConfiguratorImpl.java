@@ -22,6 +22,7 @@ public class ConfiguratorImpl implements Configurator {
   private final Catalog catalogue;
   private final CompatibilityManager compatibilityManager;
   private final Configuration configuration;
+  private final Visitor description;
 
   /**
    * Constructeur de la classe ConfiguratorImpl.
@@ -31,6 +32,7 @@ public class ConfiguratorImpl implements Configurator {
    */
   public ConfiguratorImpl(String resourcePath) {
     this.catalogue = new CatalogImpl();
+    this.description = new PrintDescriptionVisitor(System.out);
     try {
       // Charger le catalogue depuis les ressources
       InputStream inputStream = getClass().getClassLoader()
@@ -105,8 +107,13 @@ public class ConfiguratorImpl implements Configurator {
     return compatibilityManager;
   }
 
+  /**
+   * Imprime la description de la configuration actuelle.
+   * 
+   * @param stream le flux de sortie
+   */
   @Override
-  public void printDescription(PrintStream stream) {
-    stream.println(configuration.getHtmlDescription());
+  public void printDescription() {
+    description.visit(configuration);
   }
 }

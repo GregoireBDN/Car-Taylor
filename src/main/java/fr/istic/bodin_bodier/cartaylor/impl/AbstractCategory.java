@@ -1,12 +1,14 @@
 package fr.istic.bodin_bodier.cartaylor.impl;
 
 import fr.istic.bodin_bodier.cartaylor.api.Category;
+import fr.istic.bodin_bodier.cartaylor.api.Element;
+import fr.istic.bodin_bodier.cartaylor.api.Visitor;
 import java.util.Objects;
 
 /**
  * Classe abstraite représentant une catégorie de pièces.
  */
-public abstract class AbstractCategory implements Category {
+public abstract class AbstractCategory implements Category, Element {
   private final String name;
 
   /**
@@ -19,6 +21,11 @@ public abstract class AbstractCategory implements Category {
       throw new IllegalArgumentException("Le nom de la catégorie ne peut pas être null ou vide");
     }
     this.name = name;
+  }
+
+  @Override
+  public void accept(Visitor visitor) {
+    visitor.visit(this);
   }
 
   /**

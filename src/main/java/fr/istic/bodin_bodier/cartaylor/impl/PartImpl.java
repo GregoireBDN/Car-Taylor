@@ -6,13 +6,12 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import fr.istic.bodin_bodier.cartaylor.api.Category;
-import fr.istic.bodin_bodier.cartaylor.api.Element;
 import fr.istic.bodin_bodier.cartaylor.api.Visitor;
 
 /**
  * Implémentation de la classe Part.
  */
-public class PartImpl implements Part, Element {
+public class PartImpl implements Part {
 
   private PartType type;
 

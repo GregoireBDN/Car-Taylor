@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Set;
 
 /**
@@ -112,5 +114,24 @@ public class ConfiguratorImplTest {
     assertThrows(RuntimeException.class, () -> {
       new ConfiguratorImpl("data/invalid-catalogue.json");
     });
+  }
+
+  /**
+   * Vérifie que la méthode printDescription imprime correctement la description.
+   */
+  @Test
+  public void testPrintDescription() {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    PrintStream printStream = new PrintStream(outputStream);
+    Visitor visitor = new PrintDescriptionVisitor(printStream);
+
+    // Assurez-vous que la configuration est correctement initialisée
+    Configuration configuration = configurator.getConfiguration();
+    configuration.accept(visitor);
+
+    configurator.printDescription();
+
+    String output = outputStream.toString();
+    assertTrue(output.contains("Configuration:"));
   }
 }

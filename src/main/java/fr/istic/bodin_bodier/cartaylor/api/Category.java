@@ -21,7 +21,7 @@ package fr.istic.bodin_bodier.cartaylor.api;
  * 
  * @see Category
  */
-public interface Category {
+public interface Category extends Element {
 
   /**
    * Retourne le nom de la catégorie.

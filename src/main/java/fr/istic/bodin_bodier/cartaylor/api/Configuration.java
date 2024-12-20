@@ -11,7 +11,7 @@ import java.util.Set;
  * 
  * @see Configuration
  */
-public interface Configuration {
+public interface Configuration extends Element {
   /**
    * Vérifie si la configuration actuelle est valide selon les règles
    * de compatibilité et d'exigences.

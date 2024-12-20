@@ -26,13 +26,6 @@ public interface Visitor {
   void visit(Configuration configuration);
 
   /**
-   * Visite un configurateur.
-   * 
-   * @param configurator le configurateur
-   */
-  void visit(Configurator configurator);
-
-  /**
    * Visite une pièce.
    * 
    * @param part la pièce

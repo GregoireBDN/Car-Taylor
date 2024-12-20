@@ -60,5 +60,5 @@ public interface Configurator {
    * 
    * @return le catalogue
    */
-  void printDescription(PrintStream stream);
+  void printDescription();
 }

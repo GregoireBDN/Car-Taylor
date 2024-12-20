@@ -27,6 +27,16 @@ public class ConfigurationImpl implements Configuration {
   }
 
   /**
+   * Accepte un visiteur.
+   * 
+   * @param visitor le visiteur
+   */
+  @Override
+  public void accept(Visitor visitor) {
+    visitor.visit(this);
+  }
+
+  /**
    * Vérifie si la configuration actuelle est valide en respectant
    * les règles de compatibilité et les exigences.
    * 

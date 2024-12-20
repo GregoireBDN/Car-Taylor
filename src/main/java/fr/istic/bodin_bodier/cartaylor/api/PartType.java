@@ -12,7 +12,7 @@ import fr.istic.bodin_bodier.cartaylor.impl.PartImpl;
  *
  * @see Category
  */
-public interface PartType {
+public interface PartType extends Element {
 
   /**
    * Retourne le nom du type de pièce.
